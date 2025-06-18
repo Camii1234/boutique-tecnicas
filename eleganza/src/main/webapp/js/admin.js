@@ -23,6 +23,12 @@ class AdminManager {
   }
 
   setupEventListeners() {
+    // Check if user is admin
+    if (!window.authManager.isAdmin()) {
+      window.location.href = "../index.html"
+      return
+    }
+
     // Tab switching
     document.querySelectorAll(".tab-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
@@ -86,6 +92,41 @@ class AdminManager {
     const nextPage = document.getElementById("nextPage")
     if (prevPage) prevPage.addEventListener("click", () => this.changePage(-1))
     if (nextPage) nextPage.addEventListener("click", () => this.changePage(1))
+
+    // Close modals on overlay click
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("modal-overlay")) {
+        this.closeProductModal()
+        this.closeDeleteModal()
+      }
+    })
+
+    // Close modals with Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.closeProductModal()
+        this.closeDeleteModal()
+      }
+    })
+
+    // Botones de navegación
+    document.getElementById('btnProductos').onclick = function() {
+        document.getElementById('seccionProductos').style.display = 'block';
+        document.getElementById('seccionUsuarios').style.display = 'none';
+        document.getElementById('seccionPedidos').style.display = 'none';
+    };
+    document.getElementById('btnUsuarios').onclick = function() {
+        document.getElementById('seccionProductos').style.display = 'none';
+        document.getElementById('seccionUsuarios').style.display = 'block';
+        document.getElementById('seccionPedidos').style.display = 'none';
+        mostrarUsuarios();
+    };
+    document.getElementById('btnPedidos').onclick = function() {
+        document.getElementById('seccionProductos').style.display = 'none';
+        document.getElementById('seccionUsuarios').style.display = 'none';
+        document.getElementById('seccionPedidos').style.display = 'block';
+        mostrarPedidos();
+    };
   }
 
   switchTab(tabName) {
@@ -225,9 +266,19 @@ class AdminManager {
       // Add mode
       modalTitle.textContent = "Añadir Producto"
       form.reset()
+      // Reset checkboxes to default (M and L checked)
+      document.querySelectorAll('input[name="sizes"]').forEach((checkbox) => {
+        checkbox.checked = checkbox.value === "M" || checkbox.value === "L"
+      })
+      // Reset status to active
+      document.querySelector('input[name="status"][value="active"]').checked = true
     }
 
-    window.openModal(modal)
+    // Show modal
+    const modalElement = document.getElementById("productModal")
+    modalElement.style.display = "flex"
+    setTimeout(() => modalElement.classList.add("active"), 10)
+    document.body.style.overflow = "hidden"
   }
 
   populateProductForm(product) {
@@ -237,6 +288,7 @@ class AdminManager {
     document.getElementById("productStock").value = product.stock
     document.getElementById("productDescription").value = product.description
     document.getElementById("productIcon").value = product.icon
+    document.getElementById("productCategory").value = product.category || ""
 
     // Set sizes
     document.querySelectorAll('input[name="sizes"]').forEach((checkbox) => {
@@ -250,23 +302,33 @@ class AdminManager {
   }
 
   closeProductModal() {
-    window.closeModal(document.getElementById("productModal"))
+    const modal = document.getElementById("productModal")
+    modal.classList.remove("active")
+    setTimeout(() => {
+      modal.style.display = "none"
+      document.body.style.overflow = ""
+    }, 300)
     this.editingProductId = null
   }
 
   handleProductSubmit(e) {
     e.preventDefault()
 
-    const formData = new FormData(e.target)
     const productData = {
-      name: formData.get("productName") || document.getElementById("productName").value,
+      name: document.getElementById("productName").value,
       price: Number.parseInt(document.getElementById("productPrice").value),
       stock: Number.parseInt(document.getElementById("productStock").value),
       description: document.getElementById("productDescription").value,
       icon: document.getElementById("productIcon").value,
+      category: document.getElementById("productCategory").value,
       sizes: Array.from(document.querySelectorAll('input[name="sizes"]:checked')).map((cb) => cb.value),
       status: document.querySelector('input[name="status"]:checked').value,
-      category: this.getCategoryFromName(document.getElementById("productName").value),
+    }
+
+    // Validar que se haya seleccionado al menos una talla
+    if (productData.sizes.length === 0) {
+      window.showNotification("Debe seleccionar al menos una talla", "error")
+      return
     }
 
     try {
@@ -304,11 +366,19 @@ class AdminManager {
 
   deleteProduct(productId) {
     this.productToDelete = productId
-    window.openModal(document.getElementById("deleteModal"))
+    const modal = document.getElementById("deleteModal")
+    modal.style.display = "flex"
+    setTimeout(() => modal.classList.add("active"), 10)
+    document.body.style.overflow = "hidden"
   }
 
   closeDeleteModal() {
-    window.closeModal(document.getElementById("deleteModal"))
+    const modal = document.getElementById("deleteModal")
+    modal.classList.remove("active")
+    setTimeout(() => {
+      modal.style.display = "none"
+      document.body.style.overflow = ""
+    }, 300)
     this.productToDelete = null
   }
 
@@ -330,3 +400,101 @@ class AdminManager {
 document.addEventListener("DOMContentLoaded", () => {
   window.adminManager = new AdminManager()
 })
+
+// Botones de navegación
+document.getElementById('btnProductos').onclick = function() {
+    document.getElementById('seccionProductos').style.display = 'block';
+    document.getElementById('seccionUsuarios').style.display = 'none';
+    document.getElementById('seccionPedidos').style.display = 'none';
+};
+document.getElementById('btnUsuarios').onclick = function() {
+    document.getElementById('seccionProductos').style.display = 'none';
+    document.getElementById('seccionUsuarios').style.display = 'block';
+    document.getElementById('seccionPedidos').style.display = 'none';
+    mostrarUsuarios();
+};
+document.getElementById('btnPedidos').onclick = function() {
+    document.getElementById('seccionProductos').style.display = 'none';
+    document.getElementById('seccionUsuarios').style.display = 'none';
+    document.getElementById('seccionPedidos').style.display = 'block';
+    mostrarPedidos();
+};
+
+// Datos de ejemplo (reemplaza por tus datos reales)
+const usuarios = [
+    { id: 1, nombre: 'Juan Pérez', correo: 'juan@mail.com', telefono: '123456789', calle: 'Calle 1', ciudad: 'Ciudad A', codigoPostal: '10001', pais: 'País X' },
+    { id: 2, nombre: 'Ana Gómez', correo: 'ana@mail.com', telefono: '987654321', calle: 'Calle 2', ciudad: 'Ciudad B', codigoPostal: '20002', pais: 'País Y' }
+];
+
+const pedidos = [
+    { id: 101, usuarioId: 1, fecha: '2024-06-18', productos: [1,2], cantidad: 3, valor: 150.00 },
+    { id: 102, usuarioId: 2, fecha: '2024-06-17', productos: [2], cantidad: 1, valor: 50.00 }
+];
+
+// Mostrar tabla de usuarios
+function mostrarUsuarios() {
+    let html = `
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Calle</th>
+          <th>Ciudad</th>
+          <th>Código Postal</th>
+          <th>País</th>
+        </tr>
+      </thead>
+      <tbody>
+    `;
+    usuarios.forEach(u => {
+        html += `
+        <tr>
+          <td>${u.id}</td>
+          <td>${u.nombre}</td>
+          <td>${u.correo}</td>
+          <td>${u.telefono}</td>
+          <td>${u.calle}</td>
+          <td>${u.ciudad}</td>
+          <td>${u.codigoPostal}</td>
+          <td>${u.pais}</td>
+        </tr>
+        `;
+    });
+    html += '</tbody></table>';
+    document.getElementById('seccionUsuarios').innerHTML = html;
+}
+
+// Mostrar tabla de pedidos
+function mostrarPedidos() {
+    let html = `
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ID Usuario</th>
+          <th>Fecha</th>
+          <th>ID Productos</th>
+          <th>Cantidad</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+    `;
+    pedidos.forEach(p => {
+        html += `
+        <tr>
+          <td>${p.id}</td>
+          <td>${p.usuarioId}</td>
+          <td>${p.fecha}</td>
+          <td>${p.productos.join(', ')}</td>
+          <td>${p.cantidad}</td>
+          <td>$${p.valor.toFixed(2)}</td>
+        </tr>
+        `;
+    });
+    html += '</tbody></table>';
+    document.getElementById('seccionPedidos').innerHTML = html;
+}

@@ -1,37 +1,36 @@
 package com.camila.eleganza.model;
 
 public class Usuario {
-    private int id_usuario;
+    private int idUsuario;
     private String nombre;
     private String correo;
     private String telefono;
     private String calle;
     private String ciudad;
-    private String codigo_postal;
+    private String codigoPostal;
     private String pais;
     private String password;
 
     public Usuario() {
     }
 
-    public Usuario(int id_usuario, String nombre, String correo, String telefono, String calle, String ciudad, String codigo_postal, String pais, String password) {
-        this.id_usuario = id_usuario;
+    public Usuario(int idUsuario, String nombre, String correo, String telefono, String calle, String ciudad, String codigoPostal, String pais, String password) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
         this.calle = calle;
         this.ciudad = ciudad;
-        this.codigo_postal = codigo_postal;
+        this.codigoPostal = codigoPostal;
         this.pais = pais;
         this.password = password;
-
     }
 
-    public int getId_usuario() {
-        return id_usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
     public String getNombre() {
         return nombre;
@@ -63,11 +62,11 @@ public class Usuario {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
-    public String getCodigo_postal() {
-        return codigo_postal;
+    public String getCodigoPostal() {
+        return codigoPostal;
     }
-    public void setCodigo_postal(String codigo_postal) {
-        this.codigo_postal = codigo_postal;
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
     }
     public String getPais() {
         return pais;
@@ -83,6 +82,16 @@ public class Usuario {
     }
     @Override
     public String toString() {
-        return "Usuario{" + "id_usuario=" + id_usuario + ", nombre=" + nombre + ", correo=" + correo + ", telefono=" + telefono + ", calle=" + calle + ", ciudad=" + ciudad + ", codigo_postal=" + codigo_postal + ", pais=" + pais + ", password=" + password + '}';
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", calle='" + calle + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", codigoPostal='" + codigoPostal + '\'' +
+                ", pais='" + pais + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

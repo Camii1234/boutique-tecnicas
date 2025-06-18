@@ -71,14 +71,14 @@
       </div>
 
       <!-- Admin Tabs -->
-      <div class="admin-tabs">
-        <button class="tab-btn active" data-tab="products">Productos</button>
-        <button class="tab-btn" data-tab="orders">Pedidos</button>
-        <button class="tab-btn" data-tab="users">Usuarios</button>
+      <div class="admin-nav">
+        <button id="btnProductos" class="admin-btn">Productos</button>
+        <button id="btnUsuarios" class="admin-btn">Usuarios</button>
+        <button id="btnPedidos" class="admin-btn">Pedidos</button>
       </div>
 
-      <!-- Products Tab -->
-      <div class="tab-content active" id="products-tab">
+      <div id="seccionProductos" class="admin-section">
+        <!-- Aquí ya tienes tu tabla de productos -->
         <div class="search-filter">
           <div class="search-box">
             <input type="text" id="productSearch" placeholder="Buscar productos...">
@@ -123,15 +123,14 @@
         </div>
       </div>
 
-      <!-- Orders Tab -->
-      <div class="tab-content" id="orders-tab">
-        <h3>Gestión de Pedidos</h3>
+      <div id="seccionUsuarios" class="admin-section" style="display:none;">
+        <!-- Aquí se mostrará la tabla de usuarios -->
+        <h3>Gestión de Usuarios</h3>
         <p>Esta sección está en desarrollo.</p>
       </div>
-
-      <!-- Users Tab -->
-      <div class="tab-content" id="users-tab">
-        <h3>Gestión de Usuarios</h3>
+      <div id="seccionPedidos" class="admin-section" style="display:none;">
+        <!-- Aquí se mostrará la tabla de pedidos -->
+        <h3>Gestión de Pedidos</h3>
         <p>Esta sección está en desarrollo.</p>
       </div>
     </div>
@@ -168,8 +167,21 @@
             <textarea id="productDescription" class="form-input" rows="3" required></textarea>
           </div>
           <div class="form-group">
-            <label for="productIcon" class="form-label">Icono (emoji)</label>
-            <input type="text" id="productIcon" class="form-input" placeholder="👗" required>
+            <label for="productCategory" class="form-label">Categoría</label>
+            <select id="productCategory" class="form-input" required>
+              <option value="">Seleccionar categoría</option>
+              <option value="vestidos">Vestidos</option>
+              <option value="blusas">Blusas</option>
+              <option value="pantalones">Pantalones</option>
+              <option value="faldas">Faldas</option>
+              <option value="chaquetas">Chaquetas</option>
+              <option value="conjuntos">Conjuntos</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="productIcon" class="form-label">Foto (emoji o URL)</label>
+            <input type="text" id="productIcon" class="form-input" placeholder="👗 o https://ejemplo.com/imagen.jpg" required>
           </div>
           <div class="form-group">
             <label class="form-label">Tallas Disponibles</label>

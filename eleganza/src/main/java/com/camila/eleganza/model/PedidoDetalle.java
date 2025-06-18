@@ -1,40 +1,40 @@
 package com.camila.eleganza.model;
 
 public class PedidoDetalle {
-    private int id_detalle;
-    private int id_pedido;
-    private int id_producto;
+    private int idPedidoDetalle;
+    private int idPedido;
+    private int idProducto;
     private int cantidad;
-    private double precio_unitario;
+    private double precioUnitario;
 
     public PedidoDetalle() {
     }
 
-    public PedidoDetalle(int id_detalle, int id_pedido, int id_producto, int cantidad, double precio_unitario) {
-        this.id_detalle = id_detalle;
-        this.id_pedido = id_pedido;
-        this.id_producto = id_producto;
+    public PedidoDetalle(int idPedidoDetalle, int idPedido, int idProducto, int cantidad, double precioUnitario) {
+        this.idPedidoDetalle = idPedidoDetalle;
+        this.idPedido = idPedido;
+        this.idProducto = idProducto;
         this.cantidad = cantidad;
-        this.precio_unitario = precio_unitario;
+        this.precioUnitario = precioUnitario;
     }
 
-    public int getId_detalle() {
-        return id_detalle;
+    public int getIdPedidoDetalle() {
+        return idPedidoDetalle;
     }
-    public void setId_detalle(int id_detalle) {
-        this.id_detalle = id_detalle;
+    public void setIdPedidoDetalle(int idPedidoDetalle) {
+        this.idPedidoDetalle = idPedidoDetalle;
     }
-    public int getId_pedido() {
-        return id_pedido;
+    public int getIdPedido() {
+        return idPedido;
     }
-    public void setId_pedido(int id_pedido) {
-        this.id_pedido = id_pedido;
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
-    public int getId_producto() {
-        return id_producto;
+    public int getIdProducto() {
+        return idProducto;
     }
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
     public int getCantidad() {
         return cantidad;
@@ -42,17 +42,21 @@ public class PedidoDetalle {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    public double getPrecio_unitario() {
-        return precio_unitario;
+    public double getPrecioUnitario() {
+        return precioUnitario;
     }
-    public void setPrecio_unitario(double precio_unitario) {
-        this.precio_unitario = precio_unitario;
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
+
     @Override
     public String toString() {
-        return "PedidoDetalle{" + "id_detalle=" + id_detalle + ", id_pedido=" + id_pedido + ", id_producto=" + id_producto + ", cantidad=" + cantidad + ", precio_unitario=" + precio_unitario + '}';
+        return "PedidoDetalle{" +
+                "idPedidoDetalle=" + idPedidoDetalle +
+                ", idPedido=" + idPedido +
+                ", idProducto=" + idProducto +
+                ", cantidad=" + cantidad +
+                ", precioUnitario=" + precioUnitario +
+                '}';
     }
-
-
-
 }

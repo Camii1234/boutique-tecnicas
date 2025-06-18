@@ -1,7 +1,7 @@
 package com.camila.eleganza.model;
 
 public class Producto {
-    private int id_producto;
+    private int idProducto;
     private String nombre;
     private double precio;
     private String talla;
@@ -13,8 +13,8 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int id_producto, String nombre, double precio, String talla, String categoria, int stock, String estado, byte[] imagen) {
-        this.id_producto = id_producto;
+    public Producto(int idProducto, String nombre, double precio, String talla, String categoria, int stock, String estado, byte[] imagen) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
         this.talla = talla;
@@ -24,16 +24,15 @@ public class Producto {
         this.imagen = imagen;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public int getIdProducto() {
+        return idProducto;
     }
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -73,8 +72,19 @@ public class Producto {
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
+
     @Override
     public String toString() {
-        return "Producto{" + "id_producto=" + id_producto + ", nombre=" + nombre + ", precio=" + precio + ", talla=" + talla + ", categoria=" + categoria + ", stock=" + stock + ", estado=" + estado + ", imagen=" + imagen + '}';
+        return "Producto{" +
+                "idProducto=" + idProducto +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", talla='" + talla + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", stock=" + stock +
+                ", estado='" + estado + '\'' +
+                ", imagen=" + (imagen != null ? "[imagen]" : "null") +
+                '}';
     }
 }
+

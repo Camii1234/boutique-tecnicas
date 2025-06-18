@@ -1,49 +1,54 @@
 package com.camila.eleganza.model;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 public class Pedido {
-    private int id_pedido;
-    private int id_usuario;
-    private LocalDate fechaPedido;
+    private int idPedido;
+    private int idUsuario;
+    private Timestamp fecha;
+    private double total;
 
     public Pedido() {
     }
 
-    public Pedido(int id_pedido, int id_usuario, LocalDate fechaPedido) {
-        this.id_pedido = id_pedido;
-        this.id_usuario = id_usuario;
-        this.fechaPedido = fechaPedido;
+    public Pedido(int idPedido, int idUsuario, Timestamp fecha, double total) {
+        this.idPedido = idPedido;
+        this.idUsuario = idUsuario;
+        this.fecha = fecha;
+        this.total = total;
     }
 
-    public int getId_pedido() {
-        return id_pedido;
+    public int getIdPedido() {
+        return idPedido;
     }
-
-    public void setId_pedido(int id_pedido) {
-        this.id_pedido = id_pedido;
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
-
-    public int getId_usuario() {
-        return id_usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
-
-    public LocalDate getFechaPedido() {
-        return fechaPedido;
+    public Timestamp getFecha() {
+        return fecha;
     }
-
-    public void setFechaPedido(LocalDate fechaPedido) {
-        this.fechaPedido = fechaPedido;
+    public void setFecha(Timestamp fecha) {
+        this.fecha = fecha;
     }
-
+    public double getTotal() {
+        return total;
+    }
+    public void setTotal(double total) {
+        this.total = total;
+    }
     @Override
-    public String toString() {
-        return "Pedido{" + "id_pedido=" + id_pedido + ", id_usuario=" + id_usuario + ", fechaPedido=" + fechaPedido + '}';
+    public String toString() {  
+        return "Pedido{" +
+                "idPedido=" + idPedido +
+                ", idUsuario=" + idUsuario +
+                ", fecha=" + fecha +
+                ", total=" + total +
+                '}';
     }
-
-
 }
