@@ -1,3 +1,4 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,18 +16,18 @@
     <div class="container">
       <div class="header-container">
         <!-- Logo -->
-        <div class="logo" onclick="window.location.href='../index.html'">
+        <div class="logo" onclick="window.location.href='../index.jsp'">
           <div class="logo-icon">B</div>
           <h1 class="logo-text">Boutique <span>Eleganza</span></h1>
         </div>
 
         <!-- Desktop Navigation -->
         <nav>
-          <a href="../index.html">Inicio</a>
-          <a href="productos.html">Productos</a>
-          <a href="sobre-nosotros.html">Sobre Nosotros</a>
-          <a href="contacto.html">Contacto</a>
-          <a href="admin.html" class="active">Admin</a>
+          <a href="../index.jsp">Inicio</a>
+          <a href="productos.jsp">Productos</a>
+          <a href="sobre-nosotros.jsp">Sobre Nosotros</a>
+          <a href="contacto.jsp">Contacto</a>
+          <a href="admin.jsp" class="active">Admin</a>
         </nav>
 
         <!-- Actions -->
@@ -50,11 +51,11 @@
       <!-- Mobile Menu -->
       <div class="mobile-menu" id="mobileMenu">
         <nav>
-          <a href="../index.html">Inicio</a>
-          <a href="productos.html">Productos</a>
-          <a href="sobre-nosotros.html">Sobre Nosotros</a>
-          <a href="contacto.html">Contacto</a>
-          <a href="admin.html" class="active">Admin</a>
+          <a href="../index.jsp">Inicio</a>
+          <a href="productos.jsp">Productos</a>
+          <a href="sobre-nosotros.jsp">Sobre Nosotros</a>
+          <a href="contacto.jsp">Contacto</a>
+          <a href="admin.jsp" class="active">Admin</a>
         </nav>
       </div>
     </div>

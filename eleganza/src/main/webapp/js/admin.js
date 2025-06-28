@@ -14,7 +14,7 @@ class AdminManager {
   init() {
     // Check if user is admin
     if (!window.authManager.isAdmin()) {
-      window.location.href = "../index.html"
+      window.location.href = "../index.jsp"
       return
     }
 
@@ -25,7 +25,7 @@ class AdminManager {
   setupEventListeners() {
     // Check if user is admin
     if (!window.authManager.isAdmin()) {
-      window.location.href = "../index.html"
+      window.location.href = "../index.jsp"
       return
     }
 

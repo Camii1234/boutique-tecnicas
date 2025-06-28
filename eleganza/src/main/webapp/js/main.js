@@ -214,7 +214,7 @@ class BoutiqueApp {
       // Show admin link if user is admin
       if (adminLink && window.authManager.isAdmin()) {
         adminLink.style.display = "block"
-        adminLink.href = window.location.pathname.includes("/pages/") ? "admin.html" : "pages/admin.html"
+        adminLink.href = window.location.pathname.includes("/pages/") ? "admin.jsp" : "pages/admin.jsp"
       }
     } else {
       if (loginBtn) loginBtn.style.display = "flex"
@@ -376,8 +376,8 @@ window.logout = () => {
   window.showNotification("Sesión cerrada correctamente", "info")
 
   // Redirect to home if on admin page
-  if (window.location.pathname.includes("admin.html")) {
-    window.location.href = "../index.html"
+  if (window.location.pathname.includes("admin.jsp")) {
+    window.location.href = "../index.jsp"
   } else {
     window.location.reload()
   }

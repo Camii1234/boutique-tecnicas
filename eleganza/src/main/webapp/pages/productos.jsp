@@ -1,12 +1,13 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boutique Eleganza - Moda Exclusiva</title>
+  <title>Productos - Boutique Eleganza</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
   <!-- Header -->
@@ -14,17 +15,17 @@
     <div class="container">
       <div class="header-container">
         <!-- Logo -->
-        <div class="logo" onclick="window.location.href='index.html'">
+        <div class="logo" onclick="window.location.href='../index.jsp'">
           <div class="logo-icon">B</div>
           <h1 class="logo-text">Boutique <span>Eleganza</span></h1>
         </div>
 
         <!-- Desktop Navigation -->
         <nav>
-          <a href="index.html" class="active">Inicio</a>
-          <a href="pages/productos.html">Productos</a>
-          <a href="pages/sobre-nosotros.html">Sobre Nosotros</a>
-          <a href="pages/contacto.html">Contacto</a>
+          <a href="../index.jsp">Inicio</a>
+          <a href="productos.jsp" class="active">Productos</a>
+          <a href="sobre-nosotros.jsp">Sobre Nosotros</a>
+          <a href="contacto.jsp">Contacto</a>
         </nav>
 
         <!-- Actions -->
@@ -82,10 +83,10 @@
       <!-- Mobile Menu -->
       <div class="mobile-menu" id="mobileMenu">
         <nav>
-          <a href="index.html" class="active">Inicio</a>
-          <a href="pages/productos.html">Productos</a>
-          <a href="pages/sobre-nosotros.html">Sobre Nosotros</a>
-          <a href="pages/contacto.html">Contacto</a>
+          <a href="../index.jsp">Inicio</a>
+          <a href="productos.jsp" class="active">Productos</a>
+          <a href="sobre-nosotros.jsp">Sobre Nosotros</a>
+          <a href="contacto.jsp">Contacto</a>
         </nav>
         <div class="mobile-menu-actions">
           <button class="btn btn-outline" id="mobileLoginBtn">Iniciar Sesión</button>
@@ -95,46 +96,43 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container hero-container">
-      <div class="hero-content">
-        <h2 class="hero-title">
-          Elegancia
-          <span>Redefinida</span>
-        </h2>
-        <p class="hero-description">
-          Descubre nuestra colección exclusiva de prendas diseñadas para la mujer moderna que busca sofisticación
-          y estilo único.
-        </p>
-        <div class="hero-actions">
-          <a href="pages/productos.html" class="btn btn-primary btn-rounded">Explorar Colección</a>
-          <a href="pages/sobre-nosotros.html" class="btn btn-outline btn-rounded">Conoce Más</a>
-        </div>
-      </div>
-      <div class="hero-image-container">
-        <div class="hero-image-bg"></div>
-        <div class="hero-image-placeholder">👗</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Products Section -->
-  <section class="featured-products">
+  <!-- Products Section -->
+  <section class="products-page">
     <div class="container">
       <div class="section-header">
-        <h3 class="section-title">Productos Destacados</h3>
+        <h2 class="section-title">Nuestra Colección</h2>
         <p class="section-description">
-          Descubre nuestras piezas más populares y exclusivas
+          Descubre nuestra selección cuidadosa de prendas exclusivas, perfectas para cualquier ocasión.
         </p>
       </div>
 
-      <div class="products-grid" id="featuredProductsGrid">
-        <!-- Los productos destacados se cargan aquí con JavaScript -->
+      <!-- Filters -->
+      <div class="product-filters">
+        <div class="filter-group">
+          <label>Categoría:</label>
+          <select id="categoryFilter">
+            <option value="all">Todas</option>
+            <option value="vestidos">Vestidos</option>
+            <option value="blusas">Blusas</option>
+            <option value="pantalones">Pantalones</option>
+            <option value="faldas">Faldas</option>
+            <option value="conjuntos">Conjuntos</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Ordenar por:</label>
+          <select id="sortFilter">
+            <option value="default">Destacados</option>
+            <option value="price-asc">Precio: Menor a Mayor</option>
+            <option value="price-desc">Precio: Mayor a Menor</option>
+            <option value="name-asc">Nombre: A-Z</option>
+            <option value="name-desc">Nombre: Z-A</option>
+          </select>
+        </div>
       </div>
 
-      <div class="view-all-container">
-        <a href="pages/productos.html" class="btn btn-outline">Ver Todos los Productos</a>
+      <div class="products-grid" id="productsGrid">
+        <!-- Los productos se cargan aquí con JavaScript -->
       </div>
     </div>
   </section>
@@ -151,10 +149,10 @@
           <div class="footer-column">
             <h3>Navegación</h3>
             <ul>
-              <li><a href="index.html">Inicio</a></li>
-              <li><a href="pages/productos.html">Productos</a></li>
-              <li><a href="pages/sobre-nosotros.html">Sobre Nosotros</a></li>
-              <li><a href="pages/contacto.html">Contacto</a></li>
+              <li><a href="../index.jsp">Inicio</a></li>
+              <li><a href="productos.jsp">Productos</a></li>
+              <li><a href="sobre-nosotros.jsp">Sobre Nosotros</a></li>
+              <li><a href="contacto.jsp">Contacto</a></li>
             </ul>
           </div>
           <div class="footer-column">
@@ -443,10 +441,10 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/products.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/checkout.js"></script>
-  <script src="js/main.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/checkout.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 </html>
